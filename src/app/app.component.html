@@ -1,0 +1,38 @@
+<section class="main">
+  <h1>Image Gallery Assignment</h1>
+  <p>
+    <strong>Make an Angular application having following actions:</strong>
+  </p>
+  <ol>
+    <li>
+      Create 6 boxes.
+    </li>
+    <li>
+      When clicked on a box, it should select and show that image into it.
+    </li>
+    <li>
+      Similarly each box should show an image which is selected by clicking on that particular box.
+    </li>
+    <li>
+      Also provide an option to delete the image of a particular box.
+    </li>
+    <li>
+      Fill box in series.i.e if i click on box 6 and box 3,4,5 is empty then image will show in box 3 and so on.
+    </li>
+    <li>
+      If all 6 images filled and i removed 2nd image then all images shifts and 6th box become empty.
+    </li>
+  </ol>  
+  <p>
+    <strong>Working demo:</strong>
+  </p>
+  <div class="container">
+    <input type="file" #fileChooser hidden (change)="fileChosen(fileChooser.files[0])" />
+    <div class="image-tile" *ngFor="let image of imageArray; let index = index"
+      (click)="tileChosen(index);fileChooser.click()" >
+      <span class="remove" *ngIf="image.base64" (click)="removeImage(index)">x</span>
+      <span class="placeholder" *ngIf="!image.base64">Browse image</span>
+      <img [src]="image.base64 || './../assets/images/default.png'" alt="image" accept="image/*" />
+    </div>
+  </div>
+</section>
